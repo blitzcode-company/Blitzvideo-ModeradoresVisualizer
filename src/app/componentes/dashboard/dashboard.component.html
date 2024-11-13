@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="containerHome">
+  <div class="dashboard-home">
+    <h1>Bienvenido al Panel de Moderación</h1>
+    
+    <div class="stats">
+      <div class="stat-card" (click)="verReportes('comentarios')">
+        <h3>Reportes de Comentarios</h3>
+        <p>Pendientes: {{ reportesComentariosPendientes }}</p>
+        <p>Resueltos: {{ reportesComentariosResueltos }}</p>
+        
+        <h4>Últimos Reportes</h4>
+        <ul>
+          <li *ngFor="let reporte of obtenerUltimosTresReportes(reportesComentarios)">
+            <strong>{{ reporte.detalle }}</strong> 
+          </li>
+        </ul>
+      </div>
+
+      <div class="stat-card" (click)="verReportes('videos')">
+        <h3>Reportes de Videos</h3>
+        <p>Pendientes: {{ reportesVideosPendientes }}</p>
+        <p>Resueltos: {{ reportesVideosResueltos }}</p>
+        
+        <h4>Últimos Reportes</h4>
+        <ul>
+          <li *ngFor="let reporte of obtenerUltimosTresReportes(reportesVideos)">
+            <strong>{{ reporte.detalle }}</strong> 
+          </li>
+        </ul>
+      </div>
+
+      <div class="stat-card" (click)="verReportes('usuarios')">
+        <h3>Reportes de Usuarios</h3>
+        <p>Pendientes: {{ reportesUsuariosPendientes }}</p>
+        <p>Resueltos: {{ reportesUsuariosResueltos }}</p>
+        
+        <h4>Últimos Reportes</h4>
+        <ul>
+          <li *ngFor="let reporte of obtenerUltimosTresReportes(reportesUsuarios)">
+            <strong>{{ reporte.detalle }}</strong> 
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+.container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.link-resueltos {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link-resueltos:hover {
+  color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #007bff;
+  color: white;
+}
+
+th, td {
+  padding: 14px;
+  text-align: left;
+  border-right: 1px solid #ddd;
+}
+
+th:last-child, td:last-child {
+  border-right: none;
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.estado-resuelto {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.estado-pendiente {
+  color: #f44336;
+  font-weight: bold;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  color: white;
+}
+
+.btn-detalle {
+  background-color: #007bff;
+}
+
+.btn-detalle:hover {
+  background-color: #0056b3;
+}
+
+.btn-borrar {
+  background-color: #f44336;
+}
+
+.btn-borrar:hover {
+  background-color: #d32f2f;
+}
+
+.error-snackbar {
+  background-color: #f44336;
+  color: white;
+}
+
+.mat-simple-snackbar {
+  background-color: #4caf50;
+  color: white;
+}
+
+.no-reportes {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+}

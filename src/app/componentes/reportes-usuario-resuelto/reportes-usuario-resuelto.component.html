@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="container">
+  <h1>Reportes de usuarios resueltos</h1>
+  <a href="/reportes/usuarios/no-resueltos">Ver reportes de usuarios ya revisados</a>
+  <div *ngIf="!reportes || reportes.length === 0" class="no-reportes">
+    No hay reportes disponibles.
+  </div>
+  <table *ngIf="reportes && reportes.length > 0">
+      <thead>
+        <tr>
+          <th>Id del usuario reportante</th>
+          <th>Id del usuario reportado</th>
+          <th>Detalle</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reporte of reportes">
+          <td>{{ reporte.reportante.id }}</td>
+          <td>{{ reporte.reportado.id }}</td>
+          <td>{{ reporte.detalle }}</td>
+
+          <td>{{ reporte.estado }}</td>
+          <td>
+            <button (click)="verDetalle(reporte.id)" class="btn-detalle">Ver Detalle</button>
+            <button (click)="borrarReporte(reporte.id)"  class="btn-borrar">Borrar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

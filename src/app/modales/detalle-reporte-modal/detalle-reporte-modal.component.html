@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Detalles del Reporte</h2>
+<mat-dialog-content>
+  <p><strong>Reporte ID:</strong> {{ reporte.id }}</p>
+  <p><strong>Usuario:</strong> {{ reporte.user.name }}</p>
+
+  <p><strong>Video: </strong><a [href]="aplicacionBlitzvideo + 'video/' + reporte.video?.id">{{ reporte.video.titulo }}</a> </p>
+  <p><strong>Detalle:</strong> {{ reporte.detalle }}</p>
+  <p><strong>Estado:</strong> {{ reporte.estado }}</p>
+  <p><strong>Contenido inapropiado:</strong> {{ reporte.contenido_inapropiado ? 'Sí' : 'No' }}</p>
+  <p><strong>Spam:</strong> {{ reporte.spam ? 'Sí' : 'No' }}</p>
+  <p><strong>Contenido engañoso:</strong> {{ reporte.contenido_enganoso ? 'Sí' : 'No' }}</p>
+  <p><strong>Violación de derechos de autor:</strong> {{ reporte.violacion_derechos_autor ? 'Sí' : 'No' }}</p>
+  <p><strong>Incitación al odio:</strong> {{ reporte.incitacion_al_odio ? 'Sí' : 'No' }}</p>
+  <p><strong>Violencia gráfica:</strong> {{ reporte.violencia_grafica ? 'Sí' : 'No' }}</p>
+  <p><strong>Otros:</strong> {{ reporte.otros ? 'Sí' : 'No' }}</p>
+  <p><strong>Revisado en:</strong> {{ reporte.revisado_en || 'No revisado' }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Cerrar</button>
+  <div *ngIf="reporte.video.bloqueado === 1">
+    <button (click)="desbloquearVideo()">Desbloquear Video</button>
+  </div>
+  <div *ngIf="reporte.video.bloqueado === 0">
+    <button (click)="bloquearVideo()">Bloquear Video</button>
+  </div>
+
+</mat-dialog-actions>

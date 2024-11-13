@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Detalles del Reporte</h2>
+<mat-dialog-content>
+  <p><strong>Reporte ID:</strong> {{ reporte.id }}</p>
+  <p><strong>Usuario reportante:</strong> {{ reporte.reportante.name }}</p>
+  <p><strong>Usuario reportado:</strong> {{ reporte.reportado.name }}</p>
+  <p><strong>Detalle:</strong> {{ reporte.detalle }}</p>
+  <p><strong>Estado:</strong> {{ reporte.estado }}</p>
+  <p><strong>Contenido inapropiado:</strong> {{ reporte.lenguaje_ofensivo ? 'Sí' : 'No' }}</p>
+  <p><strong>Spam:</strong> {{ reporte.spam ? 'Sí' : 'No' }}</p>
+  <p><strong>Contenido engañoso:</strong> {{ reporte.contenido_enganoso ? 'Sí' : 'No' }}</p>
+  <p><strong>Incitación al odio:</strong> {{ reporte.acoso ? 'Sí' : 'No' }}</p>
+  <p><strong>Violencia gráfica:</strong> {{ reporte.contenido_sexual ? 'Sí' : 'No' }}</p>
+  <p><strong>Otros:</strong> {{ reporte.otros ? 'Sí' : 'No' }}</p>
+  <p><strong>Revisado en:</strong> {{ reporte.revisado_en || 'No revisado' }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Cerrar</button>
+  <div *ngIf="reporte.reportado.bloqueado === 1">
+    <button (click)="desbloquearUsuario()">Desbloquear usuario</button>
+  </div>
+  <div *ngIf="reporte.reportado.bloqueado === 0">
+    <button (click)="bloquearUsuario()">Bloquear usuario</button>
+  </div>
+
+</mat-dialog-actions>

@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+<div class="container">
+  <h1>Reporte de comentarios pendientes de revisión</h1>
+  <a href="reportes/comentarios/resueltos" class="link-resueltos">Ver reportes de comentarios ya revisados</a>
+
+  <div *ngIf="!reportes || reportes.length === 0" class="no-reportes">
+    No hay reportes disponibles.
+  </div>
+
+  <table *ngIf="reportes && reportes.length > 0">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Comentario ID</th>
+        <th>Detalle</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reporte of reportes">
+        <td>{{ reporte.user_id }}</td>
+        <td>{{ reporte.comentario_id }}</td>
+        <td>{{ reporte.detalle }}</td>
+        <td [class]="reporte.estado === 'Resuelto' ? 'estado-resuelto' : 'estado-pendiente'">
+          {{ reporte.estado }}
+        </td>
+        <td>
+          <button (click)="verDetalle(reporte.id)" class="btn-detalle">Ver Detalle</button>
+          <button (click)="marcarComoResuelto(reporte.id)" class="btn-resuelto">Marcar como Resuelto</button>
+          <button (click)="borrarReporte(reporte.id)" class="btn-borrar">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
