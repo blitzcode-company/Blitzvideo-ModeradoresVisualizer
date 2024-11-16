@@ -31,13 +31,17 @@ export class HeaderComponent {
 
 
   obtenerUsuario() {
-    this.api.usuario$.subscribe(user => {
-      this.usuario = user;
-
-    });
-    this.api.mostrarUserLogueado().subscribe();
+    this.api.obtenerDatosDelUsuario().subscribe(
+      (data) => {
+        this.usuario = data.user; 
+        console.log(this.usuario);
+       
+      },
+      (error) => {
+        console.error('Error al obtener los datos del usuario', error);
+      }
+    );
   }
-
  
 
 

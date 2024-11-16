@@ -17,7 +17,7 @@
               </h2>
             </div>
             <div class="formbg-inner padding-horizontal--48">
-              <form id="stripe-login" #dataform="ngForm" (ngSubmit)="onSubmit(dataform)">
+              <form id="stripe-login" #dataform="ngForm" (ngSubmit)="sendLogin()">
                 <div class="field padding-bottom--24">
                   <input type="email" placeholder="Correo electronico"  name="email" ngModel name="email">
                 </div>

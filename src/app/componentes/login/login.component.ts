@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loginStatus: boolean = false;
   usuarioRegistradoExitosamente: boolean = false;
   serverIp = environment.authApiUrl;
+  username: string = '';
+  password: string = '';
 
   defaultMensajeDeError: string = 'Error de red. Por favor, inténtalo de nuevo más tarde.';
 
@@ -64,16 +66,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  sendLogin(credentials: any) {
-    return this.api.sendLogin(credentials).subscribe(
+  sendLogin() {
+    return this.api.login(this.username, this.password).subscribe(
       (res: any) => {
-        localStorage.setItem('accessToken', res.access_token);
         this.status.isLoggedIn = true;
         this.router.navigate(['/dashboard']);
       },
       (error) => {
-        this.loginAlerta = LoginComponent.mensajesDeError[error.status] || this.defaultMensajeDeError;
         this.usuarioRegistradoExitosamente = false;
+        this.loginAlerta = 'Error en el login: ' + error.message;
+        console.error('Error en el login:', error);
       }
     );
   }
@@ -90,9 +92,5 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.showPassword = !this.showPassword;
   }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.sendLogin(form.value);
-    }
-  }
+
 }
