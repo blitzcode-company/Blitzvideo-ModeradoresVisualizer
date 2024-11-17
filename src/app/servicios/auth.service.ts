@@ -35,7 +35,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<any> {
     const body = { username, password };
-    return this.http.post<any>(`${this.apiUrl}/v1/login`, body).pipe(
+    return this.http.post<any>(`${this.apiUrl}api/v1/login`, body).pipe(
       map(response => {
         localStorage.setItem('accessToken', response.token);
         this.tokenSubject.next(response.token);
@@ -52,7 +52,7 @@ export class AuthService {
     const token = this.obtenerToken();
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.post<any>(`${this.apiUrl}/v1/logout`, {}, { headers }).pipe(
+      return this.http.post<any>(`${this.apiUrl}api/v1/logout`, {}, { headers }).pipe(
         map(response => {
           localStorage.removeItem('accessToken');
           this.tokenSubject.next(null);
@@ -70,7 +70,7 @@ export class AuthService {
     const token = this.obtenerToken();
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.get<any>(`${this.apiUrl}/v1/user`, { headers }).pipe(
+      return this.http.get<any>(`${this.apiUrl}api/v1/user`, { headers }).pipe(
         catchError(error => {
           throw new Error('Error al obtener los datos del usuario: ' + error.message);
         })
