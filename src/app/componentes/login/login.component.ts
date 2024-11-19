@@ -12,7 +12,8 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 enum HttpStatusCode {
   Unauthorized = 401,
-  BadRequest = 400
+  BadRequest = 400,
+  NoAuthorized = 405
 }
 
 @Component({
@@ -38,6 +39,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   static mensajesDeError: { [key: number]: string } = {
     [HttpStatusCode.Unauthorized]: 'Usuario o contraseña incorrectos.',
     [HttpStatusCode.BadRequest]: 'Por favor, verifica tus datos.',
+    [HttpStatusCode.NoAuthorized]: 'Este usuario no pertenece al grupo de moderadores',
+
   };
 
   private subscription!: Subscription;
@@ -74,8 +77,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       },
       (error) => {
         this.usuarioRegistradoExitosamente = false;
-        this.loginAlerta = 'Error en el login: ' + error.message;
-        console.error('Error en el login:', error);
+        this.loginAlerta = LoginComponent.mensajesDeError[error.status] || this.defaultMensajeDeError;
       }
     );
   }

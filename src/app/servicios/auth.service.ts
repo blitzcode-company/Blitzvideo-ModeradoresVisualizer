@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs';
-import { catchError, map } from 'rxjs';
-import { of } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError, tap, catchError, map, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 
@@ -44,12 +40,23 @@ export class AuthService {
         this.tokenSubject.next(response.token);
         return response;
       }),
-      catchError(error => {
-        throw new Error('Error en el login: ' + error.message);
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'Ocurrió un error inesperado.';
+  
+        if (error.status === 401) {
+          errorMessage = 'Credenciales inválidas, verifique sus datos.';
+        } else if (error.status === 405) {
+          errorMessage = 'El usuario no pertenece al grupo Moderadores.';
+        } else if (error.status === 400) {
+          errorMessage = 'Por favor, verifique sus datos.';
+        } else if (error.error && error.error.message) {
+          errorMessage = error.error.message;
+        }
+  
+        return throwError({ status: error.status, message: errorMessage})
       })
     );
   }
- 
 
   logout(): Observable<any> {
     const token = this.obtenerToken();
