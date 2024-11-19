@@ -66,8 +66,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  sendLogin() {
-    return this.api.login(this.username, this.password).subscribe(
+  sendLogin(credentials:any) {
+    return this.api.login(credentials).subscribe(
       (res: any) => {
         this.status.isLoggedIn = true;
         this.router.navigate(['/dashboard']);
@@ -92,5 +92,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.showPassword = !this.showPassword;
   }
 
-
+  onSubmit(form: NgForm) {
+      if (form.valid) {
+        this.sendLogin(form.value)
+      }
+  }
 }

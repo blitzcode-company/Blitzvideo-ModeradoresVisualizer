@@ -17,9 +17,9 @@
               </h2>
             </div>
             <div class="formbg-inner padding-horizontal--48">
-              <form id="stripe-login" #dataform="ngForm" (ngSubmit)="sendLogin()">
+              <form id="stripe-login" #dataform="ngForm" (ngSubmit)="onSubmit(dataform)">
                 <div class="field padding-bottom--24">
-                  <input type="email" placeholder="Correo electronico"  name="email" ngModel name="email">
+                  <input type="username" placeholder="Usuario"  name="username" ngModel name="username">
                 </div>
                 <div class="field padding-bottom--24 password-field">
                   <input [type]="showPassword ? 'text' : 'password'" placeholder="Contraseña" name="password" ngModel>

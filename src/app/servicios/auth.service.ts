@@ -22,7 +22,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
 
-    const storedToken = localStorage.getItem('authToken');
+    const storedToken = localStorage.getItem('accessToken');
     if (storedToken) {
       this.tokenSubject.next(storedToken);
     }
@@ -33,8 +33,11 @@ export class AuthService {
   }
 
 
-  login(username: string, password: string): Observable<any> {
-    const body = { username, password };
+  login(credentials:any): Observable<any> {
+    const body = { 
+      username:credentials.username, 
+      password:credentials.password 
+    };
     return this.http.post<any>(`${this.apiUrl}api/v1/login`, body).pipe(
       map(response => {
         localStorage.setItem('accessToken', response.token);

@@ -34,7 +34,6 @@ export class HeaderComponent {
     this.api.obtenerDatosDelUsuario().subscribe(
       (data) => {
         this.usuario = data.user; 
-        console.log(this.usuario);
        
       },
       (error) => {
